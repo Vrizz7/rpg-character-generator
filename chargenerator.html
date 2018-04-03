@@ -1,0 +1,85 @@
+<html>
+<head>
+
+	<title>Character generator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+
+</head>
+<body>
+	<div id="generator">
+
+		<div id="left">
+
+			<p>Imię postaci</p>
+					<input v-model="nick" class="textplace">
+
+			<p>Płeć</p>
+				
+				<input type="radio" id="male" value="Mężczyzna" v-model="gender">
+				<label for="male">Mężczyzna</label>
+				<input type="radio" id="female" value="Kobieta" v-model="gender">
+				<label for="female">Kobieta</label>
+			
+			<p>Klasa postaci</p>
+
+				<input type="radio" id="warrior" value="Wojownik" v-model="picked">
+				<label for="warrior">Wojownik</label>
+				<input type="radio" id="mage" value="Mag" v-model="picked">
+				<label for="mage">Mag</label>
+				<input type="radio" id="bowman" value="Łucznik" v-model="picked">
+				<label for="bowman">Łucznik</label>
+			
+			<p>Avatar postaci</p>
+			
+			<p>Punkty umiejętności</p>
+			<p>Siła <span id="strength"></span></p>
+				<input type="range" min="1" max="10" value="1" class="slider" id="myRange" v-model="str">
+			<p>Zręczność</p>
+			<p>Inteligencja</p>
+			
+			<p>Opis postaci</p>
+				<input v-model="desc" class="textplace" type="text" name="description">
+
+		</div>
+
+		<div id="right">
+			<span style="font-size: 24px;"><p>Karta postaci</p></span>
+			<span style="font-size: 12px; color: #d8b836;"><p>Imię</p></span>
+			<p>{{ nick }}</p>
+			<span style="font-size: 12px; color: #d8b836;"><p>Płęć</p></span>
+			<p>{{ gender }}</p>
+			<span style="font-size: 12px; color: #d8b836;"><p>Klasa</p></span>
+			<p>{{ picked }}</p>
+			<span style="font-size: 12px; color: #d8b836;"><p>Siła</p></span>
+			<p>{{ str }}</p>
+			<span style="font-size: 12px; color: #d8b836;"><p>Opis postaci</p></span>
+			<p>{{ desc }}</p>
+		</div>
+
+	</div>
+
+	<script>
+		var gen = new Vue ({
+			el: '#generator',
+			data: {
+				nick: '',
+				desc: '',
+				picked: '',
+				gender: '',
+				str: ''
+			}
+		})
+
+		var slider = document.getElementById('myRange');
+		var output = document.getElementById('strength');
+		strength.innerHTML = slider.value;
+
+		slider.oninput = function () {
+			output.innerHTML = this.value;
+		}
+	</script>
+</body>
+</html>
